@@ -1,0 +1,46 @@
+@fontColor : rgb(144,144,144);
+.search-wrap {   
+    background: rgb(245,245,245);
+    display:inline-block;
+    height: 30px;
+    width: 76%;
+    border-radius: 15px;
+    box-sizing : border-box; 
+    padding:0px 8px;
+    vertical-align:middle;
+    .wrapper {
+        position: relative;
+        width: 100%; 
+        height: 100%;
+        .input-wrapper{
+            position:absolute;
+            width: 100%;
+            left:100%;
+            transform:translateX(-75%);
+            transition:all 0.5s ease-in-out;
+            box-sizing:border-box;
+            line-height: 30px;
+            input{
+                width:100%;
+                font-size: 1rem;
+                color: @fontColor;
+            }
+            i{
+                position:absolute;
+                top:50%;
+                transform:translateY(-50%)
+            }
+        }
+        .active {
+            left: 0px;
+            transform:translateX(0%)
+        }
+        .close {
+            position:absolute;
+            right: 0;
+            top:50%;
+            transform: translateY(-50%);
+            display: none;
+        }
+    }
+}

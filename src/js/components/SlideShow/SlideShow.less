@@ -1,0 +1,41 @@
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    .scroll-wrapper {
+        position:absolute;
+        width: 600%;
+        height:100%;
+        display: flex;
+        li{
+            flex-grow: 1;
+            height: 100%;
+            text-align: center;
+            line-height: 150px;
+            font-size: 80px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .scroll-pointer {
+        position:absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100px;
+        i{  
+            float:left;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0s ease-in 0.5s;
+            margin: 0 2px;
+        }
+        .active {
+            background: rgba(255, 255, 255, 1);
+        }
+    }
+}
