@@ -1,6 +1,6 @@
 require('./main.less')
 import React, {Component} from 'react'
-import {Route} from 'react-router-dom'
+import {Route, IndexRoute} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {changeIndex} from '../js/actions'
 import Nav from 'components/Nav/Nav'
@@ -24,9 +24,9 @@ class Main extends Component {
                     <SearchBar content="搜影片、影院、影人"/>
                     <div className="top-sweap">取消</div>
                 </div>
-                <Nav list={[{route: '/hot', content: '正在热播'}, {route: '/will', content: '即将上映'}, {route: '/rank', content: '排行榜'}]} index = {this.state.index} changeIndex={this.props.changeIndex}>
-                    <SlideBlock index={this.state.index}/>
-                    <Route path="/hot" component={HolyPlay}/>
+                <Nav list={[{route: '/', content: '正在热播'}, {route: '/will', content: '即将上映'}, {route: '/rank', content: '排行榜'}]} changeIndex={this.props.changeIndex}>
+                    <SlideBlock index={this.props.index}/>
+                    <Route path="/" exact component={HolyPlay}/>
                     <Route path="/will" component={WillPlay}/>
                     <Route path="/rank" component={Rank}/>
                 </Nav>

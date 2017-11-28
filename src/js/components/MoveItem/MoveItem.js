@@ -12,7 +12,6 @@ class MoveItem extends Component {
     handleItem (data) {
         let itemList = ([]).concat(data)[0].data.returnValue
         let row = []
-        console.log(itemList)
         itemList.forEach((item, index)=>{
             row.push(<div key={item.id} className="move-item">
                         <div className="image-block">
