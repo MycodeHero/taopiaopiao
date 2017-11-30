@@ -1,7 +1,9 @@
 require('./MoveItem.less')
 import React, {Component} from 'react'
 import Button from 'components/Button/Button'
+import LazyLoad from 'components/LazyLoad/LazyLoad'
 import ajax from 'common/ajax'
+import $ from 'common/common'
 
 class MoveItem extends Component {
     constructor (props) {
@@ -14,14 +16,12 @@ class MoveItem extends Component {
         let row = []
         itemList.forEach((item, index)=>{
             row.push(<div key={item.id} className="move-item">
-                        <div className="image-block">
-                            <img src={'https://gw.alicdn.com/' + item.poster}/>
-                        </div>
+                        <LazyLoad src={'https://gw.alicdn.com/' + item.poster} index={index}/>
                         <div className="movie-details">
                             <p className="show-name">{item.showName}</p>
                             <p>观众评分 <span className="remark">{item.remark}</span></p>
-                            <p className="director">{'导演: ' + item.director}</p>
-                            <p className="leader-role">{'主演: ' + item.leadingRole.split(',').join(' ')}</p>
+                            <p className="director" style = {!item.director? {visibility: "hidden"} : {}}>{'导演: ' + item.director}</p>
+                            <p className="leader-role" style = {!item.director? {visibility: "hidden"} : {}}>{'主演: ' + (item.leadingRole && item.leadingRole.split(',').slice(0, 3).join(' '))}</p>
                         </div>
                         <div>
                             <Button type={item.soldType}/>
@@ -42,7 +42,7 @@ class MoveItem extends Component {
         })
     }
     render () {
-        return (<div className="move-list">
+        return (<div className="move-list" style={{height: this.props.h}}>
             {this.state.item}
         </div>)
     }

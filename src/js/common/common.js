@@ -50,6 +50,12 @@
        return this
     }
     
+     //获取mixin对象
+     Mixin.prototype.get = function (select, context) {
+        return context.getElementsByClassName(select)[0]
+    }
+
+
     //获取原型上的方法toString, 便于判断参数类型
     const toStr = Object.prototype.toString.uncurrying()
 
@@ -61,11 +67,6 @@
         this.css = css.bind(this)
         return this
     } 
-
-    //获取mixin对象
-    Mixin.prototype.get = function (select, context) {
-        return context.getElementsByClassName(select)[0]
-    }
 
     Mixin.prototype.init.prototype = Mixin.prototype
     return Mixin
