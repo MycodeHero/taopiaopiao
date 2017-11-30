@@ -21,7 +21,7 @@ class MoveItem extends Component {
                             <p className="show-name">{item.showName}</p>
                             <p>观众评分 <span className="remark">{item.remark}</span></p>
                             <p className="director" style = {!item.director? {visibility: "hidden"} : {}}>{'导演: ' + item.director}</p>
-                            <p className="leader-role" style = {!item.director? {visibility: "hidden"} : {}}>{'主演: ' + (item.leadingRole && item.leadingRole.split(',').slice(0, 3).join(' '))}</p>
+                            <p className="leader-role" style = {!item.leadingRole? {visibility: "hidden"} : {}}>{'主演: ' + (item.leadingRole && item.leadingRole.split(',').slice(0, 3).join(' '))}</p>
                         </div>
                         <div>
                             <Button type={item.soldType}/>

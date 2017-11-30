@@ -12,7 +12,7 @@ const Nav = (props) => {
         })
     return (
         <Router basename="/">
-            <div className="top-nav">
+            <div className="top-nav" style={props.status == 0? {top: 0}: {}}>
                 <ul>
                     {row}
                 </ul>

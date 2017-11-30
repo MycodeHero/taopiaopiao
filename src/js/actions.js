@@ -6,3 +6,8 @@ export function changeIndex (index) {
     return {type: CHANGE_INDEX, index}
 }
 
+export const SHOW = 'SHOW'
+export const HIDE = 'HIDE'
+export function isShow (status) {
+    return {type: SHOW, status}
+}

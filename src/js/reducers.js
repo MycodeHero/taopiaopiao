@@ -10,8 +10,19 @@ function changeIndex(state={index: 0}, action) {
     }
 }
 
-const changePosApp = combineReducers({
-    changeIndex
+function isShow(state={status: 1}, action){
+   switch(action.type) {
+        case 'SHOW':
+            return Object.assign({}, state, {status: action.status})
+        case 'HIDE':
+            return Object.assign({}, state, {status: action.status})
+        default:
+            return  state
+   }
+}
+const Reducers = combineReducers({
+    changeIndex,
+    isShow
 })
 
-export default changePosApp
+export default Reducers

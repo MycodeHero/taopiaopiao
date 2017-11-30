@@ -1,5 +1,7 @@
 require('./HotPlay.less')
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {isShow} from '../../actions'
 import $ from 'common/common'
 import SlideShow from 'components/SlideShow/SlideShow'
 import MoveItem from 'components/MoveItem/MoveItem'
@@ -9,6 +11,7 @@ class HotPlay extends Component {
     constructor (props)  {
         super(props)
         this.state = {item: []}
+        this.initPos = 0
     }
     componentDidMount () {
         ajax({
@@ -22,9 +25,19 @@ class HotPlay extends Component {
         })
     }
     componentWillUpdate(){
+        let _self = this
+        let handleDom = $('hot-play')[0]
         this.h = window.innerHeight - $('move-list')[0].offsetTop
-        $('hot-play')[0].onscroll = function () {
-            console.log(this.scrollTop)
+        handleDom.ontouchstart = function () {
+            this.initPos = this.scrollTop
+        }
+        handleDom.onscroll = function () {
+            if(this.scrollTop - this.initPos > 250) {
+                _self.props.isShow(0)
+            }
+            if(this.initPos - this.scrollTop > 250) {
+                _self.props.isShow(1)
+            }
         }
     }
     render () {
@@ -35,4 +48,9 @@ class HotPlay extends Component {
     }
 }
 
-module.exports = HotPlay
+let mapDispatchToProps = (dispatch)=> {
+    return {
+        isShow: (status)=>{dispatch(isShow(status))}
+    }
+}
+export default connect(null, mapDispatchToProps)(HotPlay)
