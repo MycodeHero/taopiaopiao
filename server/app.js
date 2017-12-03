@@ -1,44 +1,44 @@
-var webpack = require('webpack')
-var path = require('path')
-var express = require('express')
-var webpackDevMiddleware = require('webpack-dev-middleware')
-var webpackHotMiddleware = require('webpack-hot-middleware')
-var config = require('../webpack.dev.js')
-var fs = require('fs')
-var port = 3000
-var app = new express ()
-var compiler = webpack(config)
+const webpack = require('webpack')
+const koa = require('koa')
+const path = require('path')
+const fs = require('fs')
+const {devMiddleware, hotMiddleware} = require('koa-webpack-middleware')
+const route = require('koa-route')
+const config = require('../webpack.dev.js')
+const compiler = webpack(config)
+const port = 3000
+const app = new koa()
 
 
-app.use(webpackDevMiddleware(compiler, {
-    info: true,
-    publicPath: config.output.publicPath,
-    stats: {
-        colors: true
-    }
+app.use(devMiddleware(compiler, {
+  noInfo: false,
+  quiet: false,
+  lazy: true,
+  watchOptions: {
+      aggregateTimeout: 300,
+      poll: true
+  },
+  publicPath: '/',
+  stats: {
+    colors: true
+  }
 }))
 
-app.use(webpackHotMiddleware(compiler))
+app.use(hotMiddleware(compiler))
 
-app.get('/moveDetails', function (req, res) {
-   fs.readFile(path.resolve(__dirname, 'moveDetails.json'), 'utf-8', function (err, data) {
-       if(err) {
-           throw err
-       }
-       var data = JSON.parse(data)
-       res.json(data)
-   })
-})
+const moveDetail = ctx => {
+  ctx.response.type = 'json'
+  ctx.response.body = fs.createReadStream(path.resolve(__dirname, 'moveDetails.json'))
+}
+app.use(route.get('/moveDetails', moveDetail))
 
-app.get('/queryadvertise', function (req, res) {
-    fs.readFile(path.resolve(__dirname, 'queryadvertise.json'), 'utf-8', function(err, data) {
-        if(err) {
-            throw err
-        }
-        var data = JSON.parse(data)
-        res.json(data)
-    })
-})
+
+const queryAdvertise = ctx => {
+  ctx.response.type = 'json'
+  ctx.response.body = fs.createReadStream(path.resolve(__dirname, 'queryadvertise.json'))
+}
+app.use(route.get('/queryadvertise', queryAdvertise))
+
 app.listen(port, function (error) {
     if(error) {
         console.error(error)
