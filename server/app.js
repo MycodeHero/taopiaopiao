@@ -37,7 +37,6 @@ app.use(devMiddleware(compiler, {
   }
 }))
 
-console.log(login.routes)
 router.get('/login', index.routes())
 router.get('/view/login.js', login.routes())
 app.use(hotMiddleware(compiler))
