@@ -6,18 +6,18 @@ module.exports = {
     //在开发模式中方便调试
     devtool: 'cheap-module-eval-source-map',
     //主入口文件，当webpack找到配置文件时候回找到所在的主入口文件，并从主入口文件中找到依赖chain
-    entry: [
-        //react的热更新功能
-        'react-hot-loader/patch',
-        //webpack热更新中间件 客户端与服务器之间的发生改变从而产生热更新
-        'webpack-hot-middleware/client?reload=true',
-        //主入口文件 path是node的内置模块
-        path.resolve(__dirname, './src/index.js')
-    ],
+    //react的热更新功能
+    //webpack热更新中间件 客户端与服务器之间的发生改变从而产生热更新
+    //主入口文件 path是node的内置模块
+    entry: {
+        verder: ['react-hot-loader/patch', 'webpack-hot-middleware/client?loader=true'],
+        index: path.resolve(__dirname, './src/index.js'),
+        login: path.resolve(__dirname, './server/view/login.js')
+    },
     //输出文件可以是打包之后的文件，也可是是在内存中开辟的webpack服务器
     output: {
         //打包之后的文件民盛
-        filename: 'bundle.js',
+        filename: '[name].js',
         //打包到本地的路径
         path: path.resolve(__dirname, './dist'),
         //打包到服务的路径
@@ -42,8 +42,12 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
+                test: /.css$/,
+                loader: 'style-loader!css-loader',
+            },
+            {
                 test: /.less$/,
-                loader: 'style-loader!css-loader!less-loader'
+                loader: 'style-loader!css-loader!less-loader',
             },
             {
                 test: /.(png)$/,

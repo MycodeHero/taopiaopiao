@@ -9,8 +9,7 @@ const config = require('../webpack.dev.js')
 const compiler = webpack(config)
 const port = 3000
 const app = new koa()
-const index = require('./route/login')
-const login = require('./api/api')
+const login = require('./route/login')
 
 new koaPug({
   app,
@@ -37,8 +36,7 @@ app.use(devMiddleware(compiler, {
   }
 }))
 
-router.get('/login', index.routes())
-router.get('/view/login.js', login.routes())
+router.get('/login', login.routes())
 app.use(hotMiddleware(compiler))
 
 const moveDetail = ctx => {
