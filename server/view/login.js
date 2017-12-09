@@ -1,20 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { DatePicker } from 'antd';
-const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
+import {render} from 'react-dom'
+import { Row, Col } from 'antd';
 
-function onChange(date, dateString) {
-  console.log(date, dateString);
-}
-
-ReactDOM.render(
+render(
   <div>
-    <DatePicker onChange={onChange} />
-    <br />
-    <MonthPicker onChange={onChange} placeholder="Select month" />
-    <br />
-    <RangePicker onChange={onChange} />
-    <br />
-    <WeekPicker onChange={onChange} placeholder="Select week" />
-  </div>
-, document.getElementById('app'));
+    <Row>
+      <Col span={6}>后台管理系统</Col>
+    </Row>
+  </div>,
+  document.getElementById('app')
+);

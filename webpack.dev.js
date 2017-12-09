@@ -1,6 +1,7 @@
 var webpack = require('webpack')
 var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
     //在开发模式中方便调试
@@ -10,7 +11,7 @@ module.exports = {
     //webpack热更新中间件 客户端与服务器之间的发生改变从而产生热更新
     //主入口文件 path是node的内置模块
     entry: {
-        verder: ['react-hot-loader/patch', 'webpack-hot-middleware/client?loader=true'],
+        vender: ['react', 'react-dom', 'react-redux', 'redux'],
         index: path.resolve(__dirname, './src/index.js'),
         login: path.resolve(__dirname, './server/view/login.js')
     },
@@ -20,19 +21,26 @@ module.exports = {
         filename: '[name].js',
         //打包到本地的路径
         path: path.resolve(__dirname, './dist'),
+        // chunkFilename: '[name].bundle.js',
         //打包到服务的路径
         publicPath: 'http://localhost:3000/'
     },
-    //解决依赖的文件的后缀名
-    resolve: {
-        extensions: ['.js', '.less', 'jsx'],
-        alias:{
-            components: path.resolve(__dirname, 'src/js/components'),
-            api: path.resolve(__dirname, 'api'),
-            common: path.resolve(__dirname, 'src/js/common'),
-            view: path.resolve(__dirname, 'src/js/view')
-        }
-    },
+    //引用插件
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vender",
+            filename: 'js/common.min.js'
+        }),
+        new HtmlWebpackPlugin({
+            title: "淘票票",
+            template: 'src/index.html',
+            inject: 'body',
+            hash: true, 
+            chunks: ['index', 'vender']
+        })
+    ],
     //装载机
     module: {
         rules: [
@@ -62,14 +70,14 @@ module.exports = {
             }
         ]
     },
-    //引用插件
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new HtmlWebpackPlugin({
-            title: "淘票票",
-            template: 'src/index.html',
-            inject: 'body'
-        })
-    ]
+    //解决依赖的文件的后缀名
+    resolve: {
+        extensions: ['.js', '.less', 'jsx'],
+        alias:{
+            components: path.resolve(__dirname, 'src/js/components'),
+            api: path.resolve(__dirname, 'api'),
+            common: path.resolve(__dirname, 'src/js/common'),
+            view: path.resolve(__dirname, 'src/js/view')
+        }
+    },
 }
