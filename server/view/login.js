@@ -1,6 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import { Row, Col } from 'antd';
+require('./login.less')
 
 render(
   <div>

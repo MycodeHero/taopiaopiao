@@ -13,7 +13,8 @@ module.exports = {
     entry: {
         vender: ['react', 'react-dom', 'react-redux', 'redux'],
         index: path.resolve(__dirname, './src/index.js'),
-        login: path.resolve(__dirname, './server/view/login.js')
+        login: path.resolve(__dirname, './server/view/login.js'),
+
     },
     //输出文件可以是打包之后的文件，也可是是在内存中开辟的webpack服务器
     output: {
@@ -39,6 +40,9 @@ module.exports = {
             inject: 'body',
             hash: true, 
             chunks: ['index', 'vender']
+        }),
+        new ExtractTextPlugin({
+            filename: 'css/[name].min.css'
         })
     ],
     //装载机
@@ -51,11 +55,17 @@ module.exports = {
             },
             {
                 test: /.css$/,
-                loader: 'style-loader!css-loader',
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader']
+                })
             },
             {
                 test: /.less$/,
-                loader: 'style-loader!css-loader!less-loader',
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'less-loader']
+                })
             },
             {
                 test: /.(png)$/,
