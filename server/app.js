@@ -5,6 +5,7 @@ const path = require('path')
 const fs = require('fs')
 const {devMiddleware, hotMiddleware} = require('koa-webpack-middleware')
 const koaRouter = require('koa-router')
+const static = require('koa-static')
 const config = require('../webpack.dev.js')
 const compiler = webpack(config)
 const port = 3000
@@ -51,6 +52,7 @@ const queryAdvertise = ctx => {
   ctx.response.body = fs.createReadStream(path.resolve(__dirname, 'data/queryadvertise.json'))
 }
 router.get('/queryadvertise', queryAdvertise)
+app.use(static(__dirname, '../src/'))
 app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(port, function (error) {

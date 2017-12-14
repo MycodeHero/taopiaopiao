@@ -13,7 +13,7 @@ module.exports = {
     entry: {
         vender: ['react', 'react-dom', 'react-redux', 'redux'],
         index: path.resolve(__dirname, './src/index.js'),
-        login: path.resolve(__dirname, './server/view/login.js'),
+        home: path.resolve(__dirname, './server/view/home/home.js'),
 
     },
     //输出文件可以是打包之后的文件，也可是是在内存中开辟的webpack服务器

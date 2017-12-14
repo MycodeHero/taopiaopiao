@@ -1,13 +1,15 @@
+include mixin.pug
 html  
     head
         meta(charset="utf-8")
-        block common_head
-        block style
-        link(rel="shortcut icon" href="https://h5.m.taopiaopiao.com/app/movie/pages/index/favicon.ico" type="image/x-icon")
-        link(rel="stylesheet" type="text/css" href="css/login.min.css")
+        title 后台管理系统
+        link(href="https://h5.m.taopiaopiao.com/app/movie/pages/index/favicon.ico" ref="shortcut icon" type="image/x-icon")
+        +_link('home')
         block links
+        block styles
     body
         div#app
         block doms
-        script(type="text/javascript" src="js/common.min.js")
+        +_script("js/common.min")
+        +_script("home")
         block scripts
