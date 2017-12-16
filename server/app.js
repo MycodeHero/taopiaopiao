@@ -1,14 +1,10 @@
-const webpack = require('webpack')
 const koa = require('koa')
 const koaPug = require('koa-pug')
 const path = require('path')
 const fs = require('fs')
-const {devMiddleware, hotMiddleware} = require('koa-webpack-middleware')
 const koaRouter = require('koa-router')
 const static = require('koa-static')
-const config = require('../webpack.dev.js')
-const compiler = webpack(config)
-const port = 3000
+const port = 9000
 const app = new koa()
 const login = require('./route/login')
 
@@ -23,22 +19,8 @@ new koaPug({
 
 const router = new koaRouter()
 
-app.use(devMiddleware(compiler, {
-  noInfo: false,
-  quiet: false,
-  lazy: true,
-  watchOptions: {
-      aggregateTimeout: 300,
-      poll: true
-  },
-  publicPath: '/',
-  stats: {
-    colors: true
-  }
-}))
 
-router.get('/login', login.routes())
-app.use(hotMiddleware(compiler))
+router.get('/', login.routes())
 
 const moveDetail = ctx => {
   ctx.response.type = 'json'
@@ -48,7 +30,7 @@ router.get('/moveDetails', moveDetail)
 
 
 const queryAdvertise = ctx => {
-  ctx.response.type = 'json'
+  ctx.resonse.type = 'json'
   ctx.response.body = fs.createReadStream(path.resolve(__dirname, 'data/queryadvertise.json'))
 }
 router.get('/queryadvertise', queryAdvertise)

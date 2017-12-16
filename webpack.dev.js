@@ -14,6 +14,7 @@ module.exports = {
         vender: ['react', 'react-dom', 'react-redux', 'redux'],
         index: path.resolve(__dirname, './src/index.js'),
         home: path.resolve(__dirname, './server/view/home/home.js'),
+        login: path.resolve(__dirname, './server/view/login/login.js')
 
     },
     //输出文件可以是打包之后的文件，也可是是在内存中开辟的webpack服务器
@@ -90,4 +91,16 @@ module.exports = {
             view: path.resolve(__dirname, 'src/js/view')
         }
     },
+    devServer: {
+        port: 3000,
+        disableHostCheck: true,
+        hot: false,
+        inline: false,
+        host: '0.0.0.0',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+          'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+        }
+      }
 }

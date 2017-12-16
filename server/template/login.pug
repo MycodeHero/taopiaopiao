@@ -1,1 +1,12 @@
-extends common/common.pug
+include common/mixin.pug
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1")
+        link(href="https://h5.m.taopiaopiao.com/app/movie/pages/index/favicon.ico" ref="shortcut icon" type="image/x-icon")
+        +_link('login')
+        title 淘票票登录入口
+    body 
+        div#login
+        +_script('js/common.min')
+        +_script('login')

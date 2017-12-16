@@ -5,7 +5,7 @@ import { Row, Col } from 'antd';
 import Circle from './circle'
 
 render(
-  <div>
+  <div style={{overflow: "hidden", height: "100%"}}>
     <div className="top-head">
       <Row>
         <img className="logo" src="https://h5.m.taopiaopiao.com/app/movie/pages/index/favicon.ico"/>

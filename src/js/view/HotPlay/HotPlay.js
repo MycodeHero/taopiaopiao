@@ -16,7 +16,7 @@ class HotPlay extends Component {
     componentDidMount () {
         ajax({
             method: 'get',
-            url: 'http://localhost:3000/queryadvertise',
+            url: 'http://localhost:9000/queryadvertise',
             flag: true
         }).then((data) => {
             this.setState({

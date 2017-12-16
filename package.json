@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/app.js",
+    "server": "nodemon server/app.js",
+    "start": "webpack-dev-server --config webpack.dev.js --progress --colors --watch",
     "clean": "rimraf dist",
-    "build:webpack": "webpack --config webpack.pro.js --progress --colors",
     "build": "npm run clean && npm run build:webpack"
   },
   "author": "",
