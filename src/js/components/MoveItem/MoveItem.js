@@ -35,7 +35,7 @@ class MoveItem extends Component {
     componentDidMount () {
         ajax({
             method: 'get',
-            url: 'http://localhost:9000/moveDetails',
+            url: 'http://localhost:8080/moveDetails',
             flag: true,
         }).then((data)=>{
             this.handleItem(data)

@@ -12,7 +12,7 @@ function originAjax (json) {
         xhr.open(method, url + '?' + params, flag)
     }else if(method.toUpperCase() == 'POST') {
         xhr.open(method, url, flag)
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
     }
     xhr.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200) {
@@ -20,9 +20,9 @@ function originAjax (json) {
         }
     }
     if(method.toUpperCase() == 'GET') {
-        xhr.send(null)
+        xhr.send()
     }else if(method.toUpperCase() == 'POST') {
-        xhr.send(data)
+        xhr.send(params)
     }
     return this
 }

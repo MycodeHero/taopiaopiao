@@ -38,6 +38,7 @@
     "antd": "^3.0.0",
     "babel-runtime": "^6.26.0",
     "koa": "^2.0.0-alpha.8",
+    "koa-body": "^2.5.0",
     "koa-pug": "^3.0.0-2",
     "koa-route": "^3.2.0",
     "koa-router": "^7.3.0",
@@ -47,6 +48,7 @@
     "react-dom": "^16.1.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "redis": "^2.8.0",
     "redux": "^3.7.2"
   }
 }

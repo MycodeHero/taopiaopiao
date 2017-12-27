@@ -35,13 +35,13 @@ module.exports = {
             name: "vender",
             filename: 'js/common.min.js'
         }),
-        new HtmlWebpackPlugin({
-            title: "淘票票",
-            template: 'src/index.html',
-            inject: 'body',
-            hash: true, 
-            chunks: ['index', 'vender']
-        }),
+        // new HtmlWebpackPlugin({
+        //     title: "淘票票",
+        //     template: 'src/index.html',
+        //     inject: 'body',
+        //     hash: true, 
+        //     chunks: ['index', 'vender']
+        // }),
         new ExtractTextPlugin({
             filename: 'css/[name].min.css'
         })
@@ -86,7 +86,6 @@ module.exports = {
         extensions: ['.js', '.less', 'jsx'],
         alias:{
             components: path.resolve(__dirname, 'src/js/components'),
-            api: path.resolve(__dirname, 'api'),
             common: path.resolve(__dirname, 'src/js/common'),
             view: path.resolve(__dirname, 'src/js/view')
         }

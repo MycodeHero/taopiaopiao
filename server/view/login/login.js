@@ -6,21 +6,28 @@ const { Header, Footer, Content } = Layout;
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Spin } from 'antd';
 import { Select } from 'antd';
+import ajax from 'common/ajax'
+const IS_OK = "NO_ERR"
 const Option = Select.Option;
-
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
 
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log()
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log(values)
+        ajax({
+            url: "http://localhost:8080/access",
+            method: "POST",
+            data: values,
+            flag: true
+        }).then((data)=>{
+            if(data.data.returnValue == IS_OK) {
+              // window.location.href = 'http://localhost:8080/app'
+            }
+        })
       }
     });
   }
@@ -34,12 +41,6 @@ class NormalLoginForm extends React.Component {
           })(
             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
           )}
-          <div style={{position:"absolute", top: 1, right: 1, zIndex: 999}}>
-            <Select defaultValue="个人" style={{ width: '5rem' }} onChange={handleChange}>
-                <Option value="person">个人</Option>
-                <Option value="compus">企业</Option>
-            </Select>
-          </div>
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {

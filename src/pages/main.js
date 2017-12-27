@@ -24,9 +24,9 @@ class Main extends Component {
                     <SearchBar content="搜影片、影院、影人"/>
                     <div className="top-sweap">取消</div>
                 </div>
-                <Nav list={[{route: '/', content: '正在热播'}, {route: '/will', content: '即将上映'}, {route: '/rank', content: '排行榜'}]} changeIndex={this.props.changeIndex} status={this.props.status}>
+                <Nav list={[{route: '/app', content: '正在热播'}, {route: '/will', content: '即将上映'}, {route: '/rank', content: '排行榜'}]} changeIndex={this.props.changeIndex} status={this.props.status}>
                     <SlideBlock index={this.props.index}/>
-                    <Route path="/" exact component={HolyPlay}/>
+                    <Route path="/app" exact component={HolyPlay}/>
                     <Route path="/will" component={WillPlay}/>
                     <Route path="/rank" component={Rank}/>
                 </Nav>
