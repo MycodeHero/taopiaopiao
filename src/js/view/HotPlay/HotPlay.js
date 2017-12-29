@@ -43,7 +43,7 @@ class HotPlay extends Component {
     render () {
         return (<div className="hot-play">
             <SlideShow timer={3000} index = {0} item={this.state.item}/>
-            <MoveItem h={this.h}/>
+            <MoveItem h={this.h} pageNum = {10}/>
         </div>)
     }
 }

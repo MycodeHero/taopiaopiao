@@ -9,6 +9,7 @@ class MoveItem extends Component {
     constructor (props) {
         super(props)
         this.handleItem = this.handleItem.bind(this)
+        this.queryPage = this.queryPage.bind(this)
         this.state = {item:[]}
     }
     handleItem (data) {
@@ -32,10 +33,18 @@ class MoveItem extends Component {
             item: row
         })
     }
+    queryPage() {
+        
+        return this.props.pageNum
+    }
     componentDidMount () {
+        var pageNum = this.queryPage()
         ajax({
             method: 'get',
-            url: 'http://localhost:8080/moveDetails',
+            url:'http://localhost:8080/mf',
+            data: {
+                pageNum: pageNum
+            },
             flag: true,
         }).then((data)=>{
             this.handleItem(data)

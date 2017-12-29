@@ -87,8 +87,7 @@ module.exports = {
         alias:{
             components: path.resolve(__dirname, 'src/js/components'),
             common: path.resolve(__dirname, 'src/js/common'),
-            view: path.resolve(__dirname, 'src/js/view'),
-            controller: path.resolve(__dirname, 'node/controller')
+            view: path.resolve(__dirname, 'src/js/view')
         }
     },
     devServer: {

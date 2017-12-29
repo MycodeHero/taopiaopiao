@@ -10,6 +10,7 @@ const app = new koa()
 // const signIn = require('./controller/signIn')
 const redis = require('redis')
 const login = require('./route/login')
+const mf = require('./route/movieFile.js')
 let client = redis.createClient({
     host: "127.0.0.1",
     port: 6381
@@ -36,7 +37,9 @@ const router = new koaRouter()
 // client.on('connect', ()=>{
 //     const session = require('../node/controller/session')
 // })
+
 router.get('/', login.routes())
+router.get('/mf', mf.routes())
 app.use(koaBody())
 const loginApprove = async (ctx, next) => {
     // signIn(ctx.request.body)
@@ -51,11 +54,7 @@ const appPage = async (ctx, next) => {
 }
 router.get('/app', appPage)
 
-const moveDetail = ctx => {
-    ctx.response.type = 'json'
-    ctx.response.body = fs.createReadStream(path.resolve(__dirname, 'data/moveDetails.json'))
-}
-router.get('/moveDetails', moveDetail)
+
   
   
 const queryAdvertise = ctx => {

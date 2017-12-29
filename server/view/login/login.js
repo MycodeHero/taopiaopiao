@@ -7,7 +7,6 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd'
 import { Spin } from 'antd'
 import { Select } from 'antd'
 import ajax from 'common/ajax'
-require('controller/des')
 const IS_OK = "NO_ERR"
 const Option = Select.Option;
 
