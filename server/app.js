@@ -7,6 +7,7 @@ const koaBody = require('koa-body')
 const static = require('koa-static')
 const port = 8080
 const app = new koa()
+// const signIn = require('./controller/signIn')
 const redis = require('redis')
 const login = require('./route/login')
 let client = redis.createClient({
@@ -38,7 +39,7 @@ const router = new koaRouter()
 router.get('/', login.routes())
 app.use(koaBody())
 const loginApprove = async (ctx, next) => {
-    console.log((ctx.request.body))
+    // signIn(ctx.request.body)
     ctx.response.type= 'json'
     ctx.response.body = await fs.createReadStream(path.resolve(__dirname, 'data/success.json'))
 }

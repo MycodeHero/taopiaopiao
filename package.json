@@ -22,7 +22,6 @@
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
-    "html-webpack-plugin": "^2.30.1",
     "jsonp": "^0.2.1",
     "koa-webpack-middleware": "^1.0.7",
     "less": "^2.7.3",
@@ -37,6 +36,8 @@
   "dependencies": {
     "antd": "^3.0.0",
     "babel-runtime": "^6.26.0",
+    "ezcrypto": "0.0.3",
+    "html-webpack-plugin": "^2.30.1",
     "koa": "^2.0.0-alpha.8",
     "koa-body": "^2.5.0",
     "koa-pug": "^3.0.0-2",

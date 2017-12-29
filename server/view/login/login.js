@@ -1,12 +1,13 @@
 require('./login.less')
 import React from 'react'
 import {render} from 'react-dom'
-import { Layout } from 'antd';
-const { Header, Footer, Content } = Layout;
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import { Spin } from 'antd';
-import { Select } from 'antd';
+import { Layout } from 'antd'
+const { Header, Footer, Content } = Layout
+import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { Spin } from 'antd'
+import { Select } from 'antd'
 import ajax from 'common/ajax'
+require('controller/des')
 const IS_OK = "NO_ERR"
 const Option = Select.Option;
 
@@ -17,7 +18,6 @@ class NormalLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        // console.log(values)
         ajax({
             url: "http://localhost:8080/access",
             method: "POST",
@@ -25,7 +25,7 @@ class NormalLoginForm extends React.Component {
             flag: true
         }).then((data)=>{
             if(data.data.returnValue == IS_OK) {
-              // window.location.href = 'http://localhost:8080/app'
+              window.location.href = 'http://localhost:8080/app'
             }
         })
       }
