@@ -1,7 +1,7 @@
 //数据有效期在7天
 const EX = 7 * 24 * 3600 
 
-module.exports = async (key, value) => await new Promise((resolve, reject)=>{
+module.exports = async (key, value) => new Promise((resolve, reject)=>{
     if(typeof value == 'object') {
         value = JSON.stringify(value)
     }

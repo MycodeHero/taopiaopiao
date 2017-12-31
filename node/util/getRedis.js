@@ -1,5 +1,5 @@
-module.exports = async (key) => await new Promise((resolve, reject)=>{
-   global.redisServer.get(key, (err, reply)=>{
+module.exports = async (key) => new Promise((resolve, reject)=>{
+    global.redisServer.get(key, (err, reply)=>{
         if(err) {
             reject(err)
         }else{
